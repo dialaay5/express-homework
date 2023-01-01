@@ -78,6 +78,22 @@ app.get('/targil', (req, resp) => {
     const b = Number(req.query.b)
     const sum = Number(req.query.sum)
 
+    if (isNaN(a)) {
+        resp.writeHead(400)
+        resp.end(`${req.query.a} is not a number`)
+        return
+    }
+    if (isNaN(b)) {
+        resp.writeHead(400)
+        resp.end(`${req.query.b} is not a number`)
+        return
+    }
+    if (isNaN(sum)) {
+        resp.writeHead(400)
+        resp.end(`${req.query.sum} is not a number`)
+        return
+    }
+
     if (a + b == sum) {
         resp.sendFile(path.join(__dirname, '/static/correct.html'))
         return
@@ -90,7 +106,7 @@ app.get('/targil', (req, resp) => {
 
 // targil with path parameters
 app.get('/targil/:a/:b/:sum', (req, resp) => {
-    // http://localhost:8080/targil/2/3/8
+    // http://localhost:8080/targil/2/3/5
 
 console.log(req.url);
 console.log(req.query);
@@ -98,6 +114,22 @@ console.log(req.query);
 const a = Number(req.params.a)
 const b = Number(req.params.b)
 const sum = Number(req.params.sum)
+
+if (isNaN(a)) {
+    resp.writeHead(400)
+    resp.end(`${req.params.a} is not a number`)
+    return
+}
+if (isNaN(b)) {
+    resp.writeHead(400)
+    resp.end(`${req.params.b} is not a number`)
+    return
+}
+if (isNaN(sum)) {
+    resp.writeHead(400)
+    resp.end(`${req.params.sum} is not a number`)
+    return
+}
 
 if (a + b == sum) {
     resp.sendFile(path.join(__dirname, '/static/correct.html'))
@@ -117,10 +149,25 @@ console.log(req.url);
 console.log(req.query);
 console.log(req.body);
 
-
 const a = Number(req.body.a)
 const b = Number(req.body.b)
 const sum = Number(req.body.sum)
+
+if (isNaN(a)) {
+    resp.writeHead(400)
+    resp.end(`${req.body.a} is not a number`)
+    return
+}
+if (isNaN(b)) {
+    resp.writeHead(400)
+    resp.end(`${req.body.b} is not a number`)
+    return
+}
+if (isNaN(sum)) {
+    resp.writeHead(400)
+    resp.end(`${req.body.sum} is not a number`)
+    return
+}
 
 if (a + b == sum) {
     resp.sendFile(path.join(__dirname, '/static/correct.html'))
